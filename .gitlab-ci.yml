@@ -6,5 +6,6 @@ demo:
   image: python:3.8-alpine
   script:
     - echo "Hello Aliens!"
-  only:
-    - tags
+  rules:
+    - if: '$CI_COMMIT_REF_NAME =~ /^v[0-9]+\.[0-9]+\.[0-9]$/'
+      when: always
