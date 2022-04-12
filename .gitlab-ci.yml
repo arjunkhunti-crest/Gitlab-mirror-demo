@@ -1,11 +1,8 @@
 stages:
-  - demo
+  - Demo
 
-publish_build_to_pre_qa:
-  stage: demo
+demo:
+  stage: Demo
   image: python:3.8-alpine
   script:
     - echo "Hello World"
-  only:
-    refs:
-      - tags
