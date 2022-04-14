@@ -4,6 +4,10 @@ stages:
 demo:
   stage: Demo
   image: python:3.8-alpine
+  before_script:
+    - apk add --update --no-cache make curl bash git
+    - curl -L https://github.com/screwdriver-cd/gitversion/releases/download/v1.1.1/gitversion_linux_amd64 -o /usr/local/bin/gitversion && chmod +x /usr/local/bin/gitversion
+    - eval $(ssh-agent -s)
   script:
     - VERSION=$(git tag --sort=-creatordate | head -n 1)
     - echo $VERSION
