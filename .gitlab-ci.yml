@@ -5,12 +5,11 @@ demo:
   stage: Demo
   image: python:3.8-alpine
   script:
+    - VERSION=$(git tag --sort=-creatordate | head -n 1)
+    - echo $VERSION
     - echo "Hello Aliens!"  
   rules:
     - if: '$CI_COMMIT_REF_NAME =~ /^v[0-9]+\.[0-9]+\.[0-9]$/'
       when: always
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
       when: always
-      
-      
-      
