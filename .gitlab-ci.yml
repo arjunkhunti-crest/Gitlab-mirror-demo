@@ -16,6 +16,7 @@ publish_build_to_pre_qa:
     - mkdir -p artifacts
     - pip install requests
     - VERSION=$(git tag --sort=-creatordate | head -n 1)
+    - echo $VERSION
     - VERSION=v3.38.0
     # Upload ESS-ContentUpdate build to Pre-QA
     - python publish_build_to_pre_qa.py --version $VERSION --builds DA-ESS-ContentUpdate
