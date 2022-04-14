@@ -1,3 +1,7 @@
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+
 stages:
   - Demo
 
