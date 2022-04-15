@@ -26,3 +26,5 @@ publish_build_to_pre_qa:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
       when: always
+  only:
+    - tags
