@@ -12,7 +12,7 @@ publish_build_to_pre_qa:
     - mkdir -p artifacts
     - pip install requests
     - VERSION=$(git tag --sort=-creatordate | head -n 1)
-    - echo "Build version: $VERSION"
+    - echo "Build version - $VERSION"
     # Upload ESS-ContentUpdate build to Pre-QA
     - python security_content_automation/publish_build_to_pre_qa/publish_build_to_pre_qa.py --version $VERSION --builds DA-ESS-ContentUpdate
     # Upload SSA-Content build to Pre-QA
