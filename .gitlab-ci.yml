@@ -1,19 +1,16 @@
 stages:
   - publish_build_to_pre_qa
 
-.skip-ci:
-  except:
-    variables:
-      - $CI_COMMIT_MESSAGE =~ /\[ci skip\]/
-
 publish_build_to_pre_qa:
-  extends: .skip-ci
   stage: publish_build_to_pre_qa
+  image: python:3.8-alpine
+  rules:
+    - if: '$CI_COMMIT_MESSAGE =~ /ci skip/'
+      when: always  
   artifacts:
     when: always
     paths:
       - artifacts/*
-  image: python:3.8-alpine
   script:
     - mkdir -p artifacts
     - pip install requests
