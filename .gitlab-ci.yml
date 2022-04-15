@@ -4,7 +4,7 @@ stages:
 .skip-ci:
   except:
     variables:
-      - $CI_COMMIT_MESSAGE =~ /[ci skip]/
+      - $CI_COMMIT_MESSAGE =~ /\[ci skip\]/
 
 publish_build_to_pre_qa:
   extends: .skip-ci
