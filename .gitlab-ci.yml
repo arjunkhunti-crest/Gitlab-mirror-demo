@@ -17,6 +17,7 @@ publish_build_to_pre_qa:
     - pip install requests
     - VERSION=$(git tag --sort=-creatordate | head -n 1)
     - echo "Build version - $VERSION"
+    - env
     # Upload ESS-ContentUpdate build to Pre-QA
     - python publish_build_to_pre_qa.py --version $VERSION --builds DA-ESS-ContentUpdate
     # Upload SSA-Content build to Pre-QA
@@ -24,7 +25,7 @@ publish_build_to_pre_qa:
   after_script:
     - cp publish_build_to_pre_qa.log artifacts/publish_build_to_pre_qa.log
   rules:
+    - if: '$CI_COMMIT_REF_NAME =~ /^v[0-9]+\.[0-9]+\.[0-9]$/'
+      when: always
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
       when: always
-  only:
-    - tags
